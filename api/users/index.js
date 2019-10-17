@@ -19,6 +19,7 @@ router.get("/:id", (req, res) => {
 });
 
 router.put("/:id", (req, res) => {
+  let date = new Date().toISOString();
   db("users")
     .where("id", req.params.id)
     .update(
@@ -26,7 +27,8 @@ router.put("/:id", (req, res) => {
         username: req.body.username,
         name: req.body.name,
         email: req.body.email,
-        address: req.body.address
+        address: req.body.address,
+        updated_at: date
       },
       "*"
     )
